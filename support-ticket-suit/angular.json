@@ -1,0 +1,160 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "",
+  "projects": {
+    "apps-customer-portal": {
+      "root": "apps/apps/customer-portal/",
+      "sourceRoot": "apps/apps/customer-portal/src",
+      "projectType": "application",
+      "prefix": "suits",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/apps/customer-portal",
+            "index": "apps/apps/customer-portal/src/index.html",
+            "main": "apps/apps/customer-portal/src/main.ts",
+            "polyfills": "apps/apps/customer-portal/src/polyfills.ts",
+            "tsConfig": "apps/apps/customer-portal/tsconfig.app.json",
+            "assets": [
+              "apps/apps/customer-portal/src/favicon.ico",
+              "apps/apps/customer-portal/src/assets"
+            ],
+            "styles": ["apps/apps/customer-portal/src/styles.css"],
+            "scripts": [],
+            "es5BrowserSupport": true
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/apps/customer-portal/src/environments/environment.ts",
+                  "with": "apps/apps/customer-portal/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "apps-customer-portal:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "apps-customer-portal:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "apps-customer-portal:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/apps/customer-portal/tsconfig.app.json",
+              "apps/apps/customer-portal/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**"]
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "apps/apps/customer-portal/src/test.ts",
+            "tsConfig": "apps/apps/customer-portal/tsconfig.spec.json",
+            "karmaConfig": "apps/apps/customer-portal/karma.conf.js",
+            "polyfills": "apps/apps/customer-portal/src/polyfills.ts",
+            "styles": [],
+            "scripts": [],
+            "assets": []
+          }
+        }
+      }
+    },
+    "apps-customer-portal-e2e": {
+      "root": "apps/apps/customer-portal-e2e",
+      "projectType": "application",
+      "prefix": "",
+      "architect": {
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "apps/apps/customer-portal-e2e/protractor.conf.js",
+            "devServerTarget": "apps-customer-portal:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "apps-customer-portal:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": "apps/apps/customer-portal-e2e/tsconfig.e2e.json",
+            "exclude": ["**/node_modules/**"]
+          }
+        }
+      }
+    },
+    "backend-backend": {
+      "root": "libs/backend/backend",
+      "sourceRoot": "libs/backend/backend/src",
+      "projectType": "library",
+      "prefix": "suits",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/backend/backend/tsconfig.lib.json",
+              "libs/backend/backend/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**"]
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "libs/backend/backend/src/test.ts",
+            "tsConfig": "libs/backend/backend/tsconfig.spec.json",
+            "karmaConfig": "libs/backend/backend/karma.conf.js"
+          }
+        }
+      },
+      "schematics": {}
+    }
+  },
+  "cli": {
+    "warnings": {
+      "typescriptMismatch": false,
+      "versionMismatch": false
+    },
+    "defaultCollection": "@nrwl/schematics"
+  },
+  "schematics": {},
+  "defaultProject": "apps-customer-portal"
+}

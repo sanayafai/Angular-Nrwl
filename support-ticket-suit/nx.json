@@ -1,0 +1,21 @@
+{
+  "npmScope": "suits",
+  "implicitDependencies": {
+    "angular.json": "*",
+    "package.json": "*",
+    "tsconfig.json": "*",
+    "tslint.json": "*",
+    "nx.json": "*"
+  },
+  "projects": {
+    "apps-customer-portal": {
+      "tags": ["cutsomer-portal"]
+    },
+    "apps-customer-portal-e2e": {
+      "tags": []
+    },
+    "backend-backend": {
+      "tags": ["backend"]
+    }
+  }
+}
